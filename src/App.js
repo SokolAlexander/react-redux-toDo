@@ -1,7 +1,11 @@
 import React from 'react';
-import Form from './components/form/form.js';
-import List from './components/list/list.js';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import Container from './components/container/Container';
+import reducer from './components/store/reducer';
 import './App.css';
+
+const store = createStore(reducer);
 
 /**
  * Class represents an app for to-do list
@@ -368,56 +372,10 @@ class App extends React.Component {
    */
   render() {
     return (
-      <div className="App">
-        <Form className="form-add" inputs={{
-            inputText: {
-              value: this.state.addTextValue,
-              placeholder: 'add',
-              type: 'text',
-              required: true,
-              onChange: this.handleTextAddChange
-            },
-            inputDate: {
-              value: this.state.addDateValue,
-              type: 'date',
-              required: true,
-              onChange: this.handleDateAddChange
-            },
-            inputSubmit: {
-              value: 'Submit',
-              type: 'submit'
-            }
-          }} onSubmit={(e) => this.handleFormAddSubmit(e)}/>
-        <List className="list" data={this.state.data} onClick={(e) => this.handleListClick(e)}/>
-        <Form className="form-filter" inputs={{
-            inputText: {
-              value: this.state.filterTextValue,
-              placeholder: 'filter',
-              type: 'text',
-              onChange: this.handleTextFilterChange
-            },
-            inputDateFrom: {
-              value: this.state.filterDateFromValue,
-              type: 'date',
-              onChange: this.handleDateFromFilterChange
-            },
-            inputDateTo: {
-              value: this.state.filterDateToValue,
-              type: 'date',
-              onChange: this.handleDateToFilterChange
-            },
-            inputSubmitFilters: {
-              value: 'Filter',
-              type: 'submit'
-            },
-            inputDropFilters: {
-              value: 'Drop',
-              type: 'button',
-              onClick: this.handleFiltersDrop
-            }
-          }} onSubmit={(e) => {e.preventDefault(); this.handleFiltersSubmit(e)}}
-         />
-      </div>
+      <Provider store={store}>
+        <Container />
+      </Provider>
+      
     );
   }
 }

@@ -5,7 +5,9 @@
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+    "react-redux": "^7.1.0",
+    "react-scripts": "3.0.1",
+    "redux": "^4.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -18,41 +20,52 @@
   "eslintConfig": {
     "extends": "react-app",
     "rules": {
-        "require-jsdoc": ["error", {
-            "require": {
-                "FunctionDeclaration": true,
-                "MethodDefinition": true,
-                "ClassDeclaration": true,
-                "ArrowFunctionExpression": false,
-                "FunctionExpression": false
-            }
-        }],
-        "prefer-const": ["error", {
+      "require-jsdoc": [
+        "error",
+        {
+          "require": {
+            "FunctionDeclaration": true,
+            "MethodDefinition": true,
+            "ClassDeclaration": true,
+            "ArrowFunctionExpression": false,
+            "FunctionExpression": false
+          }
+        }
+      ],
+      "prefer-const": [
+        "error",
+        {
           "destructuring": "any",
           "ignoreReadBeforeAssign": false
-      }],
-      "valid-jsdoc": ["error", {
-        "prefer": {
-          "returns": "return"
-        },
-        "preferType": {
-          "object": "Object",
-          "string": "String",
-          "array": "Array",
-          "number": "Number",
-          "boolean": "Boolean"
-        },
-        "requireReturn": false,
-        "matchDescription": ".+",
-        "requireParamDescription": false,
-        "requireReturnDescription": false
-      }],
-      "no-trailing-spaces": ["error", {
-        "ignoreComments": true
-      }]
-    
+        }
+      ],
+      "valid-jsdoc": [
+        "error",
+        {
+          "prefer": {
+            "returns": "return"
+          },
+          "preferType": {
+            "object": "Object",
+            "string": "String",
+            "array": "Array",
+            "number": "Number",
+            "boolean": "Boolean"
+          },
+          "requireReturn": false,
+          "matchDescription": ".+",
+          "requireParamDescription": false,
+          "requireReturnDescription": false
+        }
+      ],
+      "no-trailing-spaces": [
+        "error",
+        {
+          "ignoreComments": true
+        }
+      ]
     }
-},
+  },
   "browserslist": {
     "production": [
       ">0.2%",
