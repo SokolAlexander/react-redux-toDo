@@ -6,12 +6,7 @@ import Item from './item.js';
  * @return {Array} of reactComponents
  */
 export default function ItemList(props) {
-    const items = [];
-    let i = 0;
-    while (props.data[i]) {
-        items.push(
-            <Item key={props.data[i].index} data={props.data[i]} />);
-        i++;
-    }
-    return items
+    return props.data.map((item) => {
+        return <Item key={item.index} data={item} />
+    })
 };

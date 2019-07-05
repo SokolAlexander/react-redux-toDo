@@ -19,8 +19,8 @@ class App extends React.Component {
       addTextValue: '',
       addDateValue: '',
       filterTextValue: '',
-      filterDateFromValue: '2010-04-29',
-      filterDateToValue: '2019-04-29',
+      filterDateFromValue: '',
+      filterDateToValue: '',
       isSortedBy: {
         text: false,
         date: false
