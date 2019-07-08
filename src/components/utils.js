@@ -68,3 +68,26 @@ const day = (new Date().getDate() < 10) ?
 return `${year}-${month}-${day}`;
 }
 
+export function dataByDate(itemA, itemB, order = 1) {
+    let i = order ? 1 : -1;
+    console.log(order);
+    if (itemA.date < itemB.date) return -i;
+    return i;
+}
+
+// let arr = [{
+//     date: 1
+//     },
+//     {
+//         date: 0
+//     },
+//     {
+//         date: -1
+//     }];
+// console.log(arr.sort(dataByDate));
+// console.log(arr);
+
+export function dataByText(itemA, itemB) {
+    if (itemA.text < itemB.text) return -1;
+    return 1
+}

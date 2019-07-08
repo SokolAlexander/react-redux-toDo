@@ -75,3 +75,31 @@ export const filterDrop = () => {
         type: 'FILTER_DROP'
     }
 }
+
+export const sortByDate = () => {
+    console.log('sortByDate');
+    return {
+        type: 'SORT_BY_DATE'
+    }
+}
+
+export const sortByText = () => {
+    console.log('sortByText');
+    return {
+        type: 'SORT_BY_TEXT'
+    }
+}
+
+export const unsort = () => {
+    console.log('unsort')
+    return {
+        type: 'UNSORT'
+    }
+}
+
+export const reverseDate = () => {
+    console.log('reverseDate');
+    return {
+        type: 'REVERSE_DATE'
+    }
+}

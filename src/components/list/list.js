@@ -4,7 +4,9 @@ import ItemList from './itemList.js';
 import {connect} from 'react-redux';
 import {
     checkItem, 
-    removeItem
+    removeItem,
+    sortByDate,
+    sortByText
     } from '../store/actions';
 import './list.css';
 
@@ -20,7 +22,9 @@ class List extends React.Component {
         this.handleListClick = this.handleListClick.bind(this);
         this.actions = {
             'delete': (index) => this.props.removeItem(index),
-            'check': (index) => this.props.checkItem(index)
+            'check': (index) => this.props.checkItem(index),
+            'sortByDate': () => this.props.sortByDate(),
+            'sortByText': () => this.props.sortByText(),
         }
     }
 
@@ -43,7 +47,9 @@ class List extends React.Component {
 const mapStateToProps = () => ({});
 const mapActionsToProps = {
     removeItem,
-    checkItem
+    checkItem,
+    sortByDate,
+    sortByText
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(List);
