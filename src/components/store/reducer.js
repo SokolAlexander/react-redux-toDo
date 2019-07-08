@@ -1,38 +1,41 @@
 import {getNewIndex,
         getToday,
-        dataByDate
+        sortOrReverse,
+        getMinMaxDates
         //getMaxMinDates
     } from '../utils.js';
 
+const defData = [{
+    index: 0,
+    date: '2019-07-05',
+    text: 'test',
+    checked: false
+    },
+    {
+    index: 1,
+    date: '2011-07-05',
+    text: 'test2',
+    checked: false
+    },
+    {
+    index: 2,
+    date: '2015-07-05',
+    text: 'test3',
+    checked: false
+    },
+];
+
 const defaultState = {
     filterTextValue: '',
-    filterDateFromValue: '',
-    filterDateToValue: '',
+    filterDateFromValue: getMinMaxDates(defData).min,
+    filterDateToValue: getMinMaxDates(defData).max,
     addTextValue: '',
     addDateValue: getToday(),
     dateFilterActive: false,
     sortedByDate: false,
+    sortedByText: false,
     someFlag: false,
-    data: [{
-        index: 0,
-        date: '2019-07-05',
-        text: 'test',
-        checked: false
-        },
-        {
-        index: 1,
-        date: '2011-07-05',
-        text: 'test2',
-        checked: false
-        },
-        {
-        index: 2,
-        date: '2015-07-05',
-        text: 'test3',
-        checked: false
-        },
-    ]
-    
+    data: defData  
 }
 
 export default function(state = defaultState, action) {
@@ -69,7 +72,9 @@ export default function(state = defaultState, action) {
                 index: getNewIndex(state.data)
             }),
             sortedByDate: false,
-            sortedByText: false
+            sortedByText: false,
+            filterDateFromValue: getMinMaxDates(state.data.concat({...action.payload})).min,
+            filterDateToValue: getMinMaxDates(state.data.concat({...action.payload})).max
         }
         case 'REMOVE_ITEM': return {
             ...state,
@@ -110,8 +115,3 @@ export default function(state = defaultState, action) {
     }
 }
 
-
-function sortOrReverse(array, field, flag) {
-    if (flag) return array.reverse();
-    return array.sort((a,b) => a[field] < b[field] ? -1 : 1);
-}

@@ -31,24 +31,24 @@ return dateFrom <= dateTo
  * @return {Object}
  */
 export function getMinMaxDates(array) {
-if (!array.length) return {
-    min: {
-    date: this._getDateForForm()
-    },
-    max: {
-    date: this._getDateForForm()
-    }
-};
-let max = array[0];
-let min = array[0];
-array.forEach(item => {
-    if (this._compareDates(item.date, min.date)) {
-    min = item;
-    } else if (this._compareDates(max.date, item.date)) {
-    max = item;
-    }
-});
-return {min: min, max: max}
+    if (!array.length) return {
+        min: {
+        date: getToday()
+        },
+        max: {
+        date: getToday()
+        }
+    };
+    let max = array[0];
+    let min = array[0];
+    array.forEach(item => {
+        if (compareDates(item.date, min.date)) {
+        min = item;
+        } else if (compareDates(max.date, item.date)) {
+        max = item;
+        }
+    });
+    return {min: min.date, max: max.date}
 }
 
 
@@ -68,26 +68,7 @@ const day = (new Date().getDate() < 10) ?
 return `${year}-${month}-${day}`;
 }
 
-export function dataByDate(itemA, itemB, order = 1) {
-    let i = order ? 1 : -1;
-    console.log(order);
-    if (itemA.date < itemB.date) return -i;
-    return i;
-}
-
-// let arr = [{
-//     date: 1
-//     },
-//     {
-//         date: 0
-//     },
-//     {
-//         date: -1
-//     }];
-// console.log(arr.sort(dataByDate));
-// console.log(arr);
-
-export function dataByText(itemA, itemB) {
-    if (itemA.text < itemB.text) return -1;
-    return 1
+export function sortOrReverse(array, field, flag) {
+    if (flag) return array.reverse();
+    return array.sort((a,b) => a[field] < b[field] ? -1 : 1);
 }
