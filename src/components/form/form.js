@@ -1,4 +1,13 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {
+    filterTextChange,
+    filterDateFromChange,
+    filterDateToChange,
+    addTextChange,
+    addDateChange,
+    addItem
+} from '../store/actions';
 import './form.css';
 
 /**
@@ -6,7 +15,7 @@ import './form.css';
  * @param {props} props
  * @return {ReactComponent}
  */
-export default function Form(props) {
+function Form(props) {
     const inputs = props.inputs;
 
     const res = [];
@@ -23,3 +32,24 @@ export default function Form(props) {
         </form>
     )
 }
+
+const mapStateToProps = (state) => {
+    return {
+    filterTextValue: state.filterTextValue,
+    filterDateToValue: state.filterDateToValue,
+    filterDateFromValue: state.filterDateFromValue,
+    addTextValue: state.addTextValue,
+    addDateValue: state.addDateValue
+    }
+}
+
+const mapActionsToProps = {
+    filterTextChange,
+    filterDateFromChange,
+    filterDateToChange,
+    addTextChange,
+    addDateChange,
+    addItem
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(Form);

@@ -6,11 +6,11 @@ export const checkItem = (index) => {
     }
 };
 
-export const addItem = (index) => {
+export const addItem = (newItem) => {
     console.log('addItemAction');
     return {
         type: 'ADD_ITEM',
-        payload: index
+        payload: newItem
     }
 };
 
@@ -61,3 +61,17 @@ export const addDateChange = (newValue) => {
         payload: newValue
     }
 };
+
+export const filterSubmit = (value1, value2) => {
+    console.log('filterSubmit');
+    return {
+        type: 'FILTER_SUBMIT'
+    }
+}
+
+export const filterDrop = () => {
+    console.log('filterDrop');
+    return {
+        type: 'FILTER_DROP'
+    }
+}
