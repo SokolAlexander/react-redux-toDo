@@ -1,4 +1,5 @@
-import {getNewIndex, sortOrReverse, getMinMaxDates} from '../../utils';
+import {getNewIndex, sortOrReverse} from '../../utils';
+import {lsAdd, lsCheck, lsRemove, lsGetAll} from '../../localStorage';
 //eslint-disable-next-line
 const defData = [{
         index: 0,
@@ -19,39 +20,49 @@ const defData = [{
         checked: false
     }];
 
+const LSData = lsGetAll();
+
 const defaultState = {
     dateFilterActive: false,
     sortedByDate: false,
     sortedByText: false,
     someFlag: false,
-    data: []  
+    data: LSData 
 };
 
 export default function(state = defaultState, action) {
     switch (action.type) {
-        case 'ADD_ITEM': console.log(state); return {
-            ...state,
-            data: state.data.concat({
+        case 'ADD_ITEM': {
+            const newItem = {
                 ...action.payload,
                 index: getNewIndex(state.data)
-            }),
-            sortedByDate: false,
-            sortedByText: false,
-            filterDateFromValue: getMinMaxDates(state.data.concat({...action.payload})).min,
-            filterDateToValue: getMinMaxDates(state.data.concat({...action.payload})).max
+            };
+            lsAdd(newItem); 
+            return {
+                ...state,
+                data: state.data.concat(newItem),
+                sortedByDate: false,
+                sortedByText: false
+            }
         }
-        case 'REMOVE_ITEM': return {
-            ...state,
-            data: state.data.filter((element) => element.index !== parseInt(action.payload))
+        case 'REMOVE_ITEM': {
+            lsRemove(action.payload); 
+            return {
+                ...state,
+                data: state.data.filter((element) => element.index !== parseInt(action.payload))
+            }
         }
-        case 'CHECK_ITEM': return {
-            ...state,
-            data: state.data.map((element) => {
-                if (element.index === parseInt(action.payload)) {
-                    element.checked = !element.checked
-                }
-                return element
-            })
+        case 'CHECK_ITEM': {
+            lsCheck(action.payload); 
+            return {
+                ...state,
+                data: state.data.map((element) => {
+                    if (element.index === parseInt(action.payload)) {
+                        element.checked = !element.checked
+                    }
+                    return element
+                })
+            }
         }
         case 'SORT_BY_DATE': return {
             ...state,

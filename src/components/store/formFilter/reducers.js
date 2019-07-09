@@ -1,10 +1,12 @@
 import {getMinMaxDates} from '../../utils';
+import {lsGetAll} from '../../localStorage'; 
 
 const defaultState = {
     filterTextValue: '',
-    filterDateFromValue: getMinMaxDates([]).min,
-    filterDateToValue: getMinMaxDates([]).max
+    filterDateFromValue: getMinMaxDates(lsGetAll()).min,
+    filterDateToValue: getMinMaxDates(lsGetAll()).max
 }
+
 
 export default function(state = defaultState, action) {
     switch (action.type) {
@@ -22,11 +24,21 @@ export default function(state = defaultState, action) {
         }
         case 'FILTER_SUBMIT': return {
             ...state,
+            filterTextValue: '',
             dateFilterActive: true
         }
         case 'FILTER_DROP': return {
             ...state,
             dateFilterActive: false
+        }
+        case 'ADD_ITEM': console.log('filter'); return {
+            ...state,
+            filterTextValue: '',
+            dateFilterActive: false,
+            filterDateFromValue: state.filterDateFromValue > action.payload.date
+                ? action.payload.date: state.filterDateFromValue, 
+            filterDateToValue: state.filterDateFromValue < action.payload.date
+            ? action.payload.date: state.filterDateFromValue 
         }
         default: return state
     }

@@ -32,23 +32,20 @@ return dateFrom <= dateTo
  */
 export function getMinMaxDates(array) {
     if (!array.length) return {
-        min: {
-        date: getToday()
-        },
-        max: {
-        date: getToday()
-        }
+        min: getToday(),
+        max: getToday()
     };
-    let max = array[0];
-    let min = array[0];
+
+    let max = array[0].date;
+    let min = array[0].date;
     array.forEach(item => {
-        if (compareDates(item.date, min.date)) {
-        min = item;
-        } else if (compareDates(max.date, item.date)) {
-        max = item;
+        if (compareDates(item.date, min)) {
+        min = item.date;
+        } else if (compareDates(max, item.date)) {
+        max = item.date;
         }
     });
-    return {min: min.date, max: max.date}
+    return {min, max}
 }
 
 
@@ -56,16 +53,16 @@ export function getMinMaxDates(array) {
  * gets date in yyyy-mm-dd format
  * @return {String} date
  */
-export function getToday() {
-const year = new Date().getFullYear();
-const month = ((new Date().getMonth()+1) < 10) ?
-    ('0' + (new Date().getMonth()+1)) :
-    (new Date().getMonth() + 1);
-const day = (new Date().getDate() < 10) ?
-('0' + new Date().getDate()) :
-(new Date().getDate());
+export function getToday(date = new Date()) {
+    const year = date.getFullYear();
+    const month = ( (date.getMonth()+1) < 10 ) ?
+        ( '0' + (date.getMonth()+1) ) :
+        ( date.getMonth() + 1 );
+    const day = ( date.getDate() < 10 ) ?
+        ( '0' + date.getDate() ) :
+        ( date.getDate() );
 
-return `${year}-${month}-${day}`;
+    return `${year}-${month}-${day}`;
 }
 
 export function sortOrReverse(array, field, flag) {

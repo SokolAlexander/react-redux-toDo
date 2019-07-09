@@ -15,6 +15,11 @@ export default function(state = defaultState, action) {
             ...state,
             addDateValue: action.payload
         }
+        case 'ADD_ITEM': console.log('formAdd'); return {
+            ...state,
+            addTextValue: '',
+            addDateValue: getToday()
+        }
         default: return state
     }
 }
