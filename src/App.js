@@ -1,7 +1,9 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import Container from './components/container/Container';
+import FormFilter from './components/form/formFilter';
+import FormAdd from './components/form/formAdd';
+import List from './components/list/list';
 import reducer from './components/store/reducer';
 import './App.css';
 
@@ -17,8 +19,12 @@ class App extends React.Component {
    */
   render() {
     return (
-      <Provider store={store}>
-        <Container />
+      <Provider store={store}>   
+        <div className="App">
+          <FormAdd />
+          <List/>
+          <FormFilter />
+        </div>
       </Provider>
       
     );

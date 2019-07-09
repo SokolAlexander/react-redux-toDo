@@ -7,7 +7,7 @@ import {
     removeItem,
     sortByDate,
     sortByText
-    } from '../store/actions';
+    } from '../store/list/actions';
 import './list.css';
 
 /**

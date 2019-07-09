@@ -8,13 +8,16 @@ import {connect} from 'react-redux';
  * @return {Array} of reactComponents
  */
 function ItemList(props) {
+    if (!props.data[0]) return null;
     const data = props.data.filter((item) => {
         return (item.text.indexOf(props.filterTextValue) !== -1) &&
         ((!props.dateFilterActive) || 
             (compareDates(props.filterDateFromValue, props.filterDateToValue, item.date)));
     });
-
-    if (props.someFlag) {data[0] = data[0]};
+    
+    if (props.someFlag) {//eslint-disable-next-line
+        data[0] = data[0]
+    };
 
     return data.map((item) => {
         return <Item key={item.index} item={item} />
@@ -23,12 +26,12 @@ function ItemList(props) {
 
 const mapStateToProps = (state) => {
     return {
-        data: state.data,
-        filterTextValue: state.filterTextValue,
-        dateFilterActive: state.dateFilterActive,
-        filterDateFromValue: state.filterDateFromValue,
-        filterDateToValue: state.filterDateToValue,
-        someFlag: state.someFlag
+        data: state.list.data,
+        filterTextValue: state.formFilter.filterTextValue,
+        dateFilterActive: state.formFilter.dateFilterActive,
+        filterDateFromValue: state.formFilter.filterDateFromValue,
+        filterDateToValue: state.formFilter.filterDateToValue,
+        someFlag: state.list.someFlag
     }
 }
 export default connect(mapStateToProps)(ItemList);

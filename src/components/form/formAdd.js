@@ -4,7 +4,7 @@ import {
     addTextChange,
     addDateChange,
     addItem
-} from '../store/actions';
+    } from '../store/formAdd/actions';
 import './form.css';
 
 /**
@@ -37,15 +37,15 @@ class FormAdd extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-    addTextValue: state.addTextValue,
-    addDateValue: state.addDateValue
+    addTextValue: state.formAdd.addTextValue,
+    addDateValue: state.formAdd.addDateValue
     }
 }
 
-const mapActionsToProps = {
+const mapDispatchToProps = {
     addTextChange,
     addDateChange,
     addItem
 }
 
-export default connect(mapStateToProps, mapActionsToProps)(FormAdd);
+export default connect(mapStateToProps, mapDispatchToProps)(FormAdd);

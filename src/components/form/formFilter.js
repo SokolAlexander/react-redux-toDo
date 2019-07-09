@@ -6,7 +6,7 @@ import {
     filterDateFromChange,
     filterSubmit,
     filterDrop
-} from '../store/actions';
+} from '../store/formFilter/actions';
 import './form.css';
 
 /**
@@ -43,13 +43,13 @@ class FormFilter extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-    filterTextValue: state.filterTextValue,
-    filterDateToValue: state.filterDateToValue,
-    filterDateFromValue: state.filterDateFromValue
+    filterTextValue: state.formFilter.filterTextValue,
+    filterDateToValue: state.formFilter.filterDateToValue,
+    filterDateFromValue: state.formFilter.filterDateFromValue
     }
 }
 
-const mapActionsToProps = {
+const mapDispatchToProps = {
     filterTextChange,
     filterDateToChange,
     filterDateFromChange,
@@ -57,4 +57,4 @@ const mapActionsToProps = {
     filterDrop
 }
 
-export default connect(mapStateToProps, mapActionsToProps)(FormFilter);
+export default connect(mapStateToProps, mapDispatchToProps)(FormFilter);
