@@ -79,6 +79,7 @@ export function getToday(date = new Date()) {
  * @return {Array}
  */
 export function sortOrReverse(array, field, flag) {
-    if (flag) return array.reverse();
-    return array.sort((a,b) => a[field] < b[field] ? -1 : 1);
+    const newData = array.slice();
+    if (flag) return newData.reverse();
+    return newData.sort((a,b) => a[field] < b[field] ? -1 : 1);
 }

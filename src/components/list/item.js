@@ -6,7 +6,6 @@ import React from 'react';
  */
 export default function Item(props) {
     const item = props.item;
-    //debugger
     return <li data-index={item.index}>
         <div className={(item.checked ? "checked " : "") + "item-check item-block"}
             data-action="check" />

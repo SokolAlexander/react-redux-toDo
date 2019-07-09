@@ -12,23 +12,17 @@ const store = createStore(reducer);
 /**
  * Class represents an app for to-do list
  */
-class App extends React.Component {
-  /**
-   * render an app
-   * @return {ReactComponent}
-   */
-  render() {
-    return (
-      <Provider store={store}>
-        <div className="App">
-          <FormAdd />
-          <List/>
-          <FormFilter />
-        </div>
-      </Provider>
+function App() {
+  return (
+    <Provider store={store}>
+      <div className="App">
+        <FormAdd />
+        <List/>
+        <FormFilter />
+      </div>
+    </Provider>
 
-    );
-  }
+  );
 }
 
 export default App;

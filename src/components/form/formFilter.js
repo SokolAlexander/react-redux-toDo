@@ -14,35 +14,28 @@ import './form.css';
  * @param {props} props
  * @return {ReactComponent}
  */
-class FormFilter extends React.Component {
-    /**
-     * renders form
-     * @return {ReactComponent}
-     */
-    render() {
-        return (
-            <form onSubmit={(e) => {e.preventDefault(); this.props.filterSubmit()}}>
-                <input type="text"
-                    placeholder="filter"
-                    value={this.props.filterTextValue}
-                    onChange={(e) => this.props.filterTextChange(e.target.value)}/>
-                <input type="date"
-                    required
-                    value={this.props.filterDateFromValue}
-                    onChange={(e) => this.props.filterDateFromChange(e.target.value)}/>
-                <input type="date"
-                    required
-                    value={this.props.filterDateToValue}
-                    onChange={(e) => this.props.filterDateToChange(e.target.value)}/>
-                <input type="submit"
-                    value="Boom"/>
-                <input type="button"
-                    value="Zhmyak"
-                    onClick={() => this.props.filterDrop()}/>
-            </form>
-        )
-    }
-
+function FormFilter(props) {
+    return (
+        <form onSubmit={(e) => {e.preventDefault(); props.filterSubmit()}}>
+            <input type="text"
+                placeholder="filter"
+                value={props.filterTextValue}
+                onChange={(e) => props.filterTextChange(e.target.value)}/>
+            <input type="date"
+                required
+                value={props.filterDateFromValue}
+                onChange={(e) => props.filterDateFromChange(e.target.value)}/>
+            <input type="date"
+                required
+                value={props.filterDateToValue}
+                onChange={(e) => props.filterDateToChange(e.target.value)}/>
+            <input type="submit"
+                value="Filter"/>
+            <input type="button"
+                value="Drop"
+                onClick={() => props.filterDrop()}/>
+        </form>
+    )
 }
 
 const mapStateToProps = (state) => {

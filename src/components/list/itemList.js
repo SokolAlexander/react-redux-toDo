@@ -15,10 +15,7 @@ function ItemList(props) {
             (compareDates(props.filterDateFromValue, props.filterDateToValue, item.date)));
     });
 
-    if (props.someFlag) {//eslint-disable-next-line
-        data[0] = data[0]
-    };
-
+    if (!data[0]) return null;
     return data.map((item) => {
         return <Item key={item.index} item={item} />
     })
@@ -30,8 +27,8 @@ const mapStateToProps = (state) => {
         filterTextValue: state.formFilter.filterTextValue,
         dateFilterActive: state.formFilter.dateFilterActive,
         filterDateFromValue: state.formFilter.filterDateFromValue,
-        filterDateToValue: state.formFilter.filterDateToValue,
-        someFlag: state.list.someFlag
+        filterDateToValue: state.formFilter.filterDateToValue
     }
-}
+};
+
 export default connect(mapStateToProps)(ItemList);

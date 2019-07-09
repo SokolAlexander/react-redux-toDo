@@ -7,7 +7,6 @@ const defaultState = {
     dateFilterActive: false,
     sortedByDate: false,
     sortedByText: false,
-    someFlag: false,
     data: LSData
 };
 
@@ -54,14 +53,12 @@ export default function(state = defaultState, action) {
         case 'SORT_BY_DATE': return {
             ...state,
             data: sortOrReverse(state.data, 'date', state.sortedByDate),
-            someFlag: !state.someFlag,
             sortedByDate: true,
             sortedByText: false
         }
         case 'SORT_BY_TEXT': return {
             ...state,
             data: sortOrReverse(state.data, 'text', state.sortedByText),
-            someFlag: !state.someFlag,
             sortedByDate: false,
             sortedByText: true
         }
