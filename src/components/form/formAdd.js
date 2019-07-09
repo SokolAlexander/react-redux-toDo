@@ -22,7 +22,8 @@ function FormAdd(props) {
                 required
                 value={props.addDateValue}
                 onChange={(e) => props.addDateChange(e.target.value)}/>
-            <input type="submit"/>
+            <input type="submit"
+                value="Add"/>
         </form>
     )
 }
