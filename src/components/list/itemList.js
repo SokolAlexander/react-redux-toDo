@@ -11,10 +11,10 @@ function ItemList(props) {
     if (!props.data[0]) return null;
     const data = props.data.filter((item) => {
         return (item.text.indexOf(props.filterTextValue) !== -1) &&
-        ((!props.dateFilterActive) || 
+        ((!props.dateFilterActive) ||
             (compareDates(props.filterDateFromValue, props.filterDateToValue, item.date)));
     });
-    
+
     if (props.someFlag) {//eslint-disable-next-line
         data[0] = data[0]
     };

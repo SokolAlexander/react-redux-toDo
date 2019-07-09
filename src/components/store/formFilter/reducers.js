@@ -1,5 +1,5 @@
 import {getMinMaxDates} from '../../utils';
-import {lsGetAll} from '../../localStorage'; 
+import {lsGetAll} from '../../localStorage';
 
 const defaultState = {
     filterTextValue: '',
@@ -7,7 +7,12 @@ const defaultState = {
     filterDateToValue: getMinMaxDates(lsGetAll()).max
 }
 
-
+/**
+ * reducer for formFilter
+ * @param {ReduxState} state 
+ * @param {Object} action
+ * @return {ReduxState} 
+ */
 export default function(state = defaultState, action) {
     switch (action.type) {
         case 'FILTER_TEXT_CHANGE': return {
@@ -36,9 +41,9 @@ export default function(state = defaultState, action) {
             filterTextValue: '',
             dateFilterActive: false,
             filterDateFromValue: state.filterDateFromValue > action.payload.date
-                ? action.payload.date: state.filterDateFromValue, 
+                ? action.payload.date: state.filterDateFromValue,
             filterDateToValue: state.filterDateFromValue < action.payload.date
-            ? action.payload.date: state.filterDateFromValue 
+            ? action.payload.date: state.filterDateFromValue
         }
         default: return state
     }

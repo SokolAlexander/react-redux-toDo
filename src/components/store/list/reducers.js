@@ -1,24 +1,5 @@
 import {getNewIndex, sortOrReverse} from '../../utils';
 import {lsAdd, lsCheck, lsRemove, lsGetAll} from '../../localStorage';
-//eslint-disable-next-line
-const defData = [{
-        index: 0,
-        date: '2019-07-05',
-        text: 'test',
-        checked: false
-        },
-        {
-        index: 1,
-        date: '2011-07-05',
-        text: 'test2',
-        checked: false
-        },
-        {
-        index: 2,
-        date: '2015-07-05',
-        text: 'test3',
-        checked: false
-    }];
 
 const LSData = lsGetAll();
 
@@ -27,9 +8,15 @@ const defaultState = {
     sortedByDate: false,
     sortedByText: false,
     someFlag: false,
-    data: LSData 
+    data: LSData
 };
 
+/**
+ * reducer for List
+ * @param {ReduxState} state (previous)
+ * @param {Object} action
+ * @return {ReduxState}
+ */
 export default function(state = defaultState, action) {
     switch (action.type) {
         case 'ADD_ITEM': {
@@ -37,7 +24,7 @@ export default function(state = defaultState, action) {
                 ...action.payload,
                 index: getNewIndex(state.data)
             };
-            lsAdd(newItem); 
+            lsAdd(newItem);
             return {
                 ...state,
                 data: state.data.concat(newItem),
@@ -46,14 +33,14 @@ export default function(state = defaultState, action) {
             }
         }
         case 'REMOVE_ITEM': {
-            lsRemove(action.payload); 
+            lsRemove(action.payload);
             return {
                 ...state,
                 data: state.data.filter((element) => element.index !== parseInt(action.payload))
             }
         }
         case 'CHECK_ITEM': {
-            lsCheck(action.payload); 
+            lsCheck(action.payload);
             return {
                 ...state,
                 data: state.data.map((element) => {

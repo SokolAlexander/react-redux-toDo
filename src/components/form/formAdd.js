@@ -13,13 +13,17 @@ import './form.css';
  * @return {ReactComponent}
  */
 class FormAdd extends React.Component {
+    /**
+     * render form
+     * @return {ReactComponent}
+     */
     render() {
         return (
             <form onSubmit={(e) => {e.preventDefault(); this.props.addItem({
                 text: this.props.addTextValue,
                 date: this.props.addDateValue
             })}}>
-                <input type="text" 
+                <input type="text"
                     required
                     placeholder="add"
                     value={this.props.addTextValue}

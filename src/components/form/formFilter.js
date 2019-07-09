@@ -15,6 +15,10 @@ import './form.css';
  * @return {ReactComponent}
  */
 class FormFilter extends React.Component {
+    /**
+     * renders form
+     * @return {ReactComponent}
+     */
     render() {
         return (
             <form onSubmit={(e) => {e.preventDefault(); this.props.filterSubmit()}}>

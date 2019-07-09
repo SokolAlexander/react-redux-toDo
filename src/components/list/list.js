@@ -3,7 +3,7 @@ import Header from './header.js';
 import ItemList from './itemList.js';
 import {connect} from 'react-redux';
 import {
-    checkItem, 
+    checkItem,
     removeItem,
     sortByDate,
     sortByText
@@ -16,6 +16,10 @@ import './list.css';
  * @return {ReactComponent}
  */
 class List extends React.Component {
+    /**
+     * Create a List
+     * @param {Props} props 
+     */
     constructor(props) {
         super(props);
 
@@ -28,12 +32,20 @@ class List extends React.Component {
         }
     }
 
+    /**
+     * handles click on the List el, depending on the target
+     * @param {Event} e 
+     */
     handleListClick(e) {
         const action = e.target.dataset.action
         if (action === undefined) return;
         this.actions[action](e.target.parentNode.dataset.index);
     }
 
+    /**
+     * render a List
+     * @return {ReactComponent}
+     */
     render() {
         return (
             <div onClick={(e) => this.handleListClick(e)} className="list">

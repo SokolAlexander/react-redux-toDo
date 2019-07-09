@@ -1,3 +1,8 @@
+/**
+ * finds item with max index in array and returns maxIndex+1
+ * @param {Array} array
+ * @return {Number} 
+ */
 export function getNewIndex(array) {
     let index = 0;
     array.forEach(element => {
@@ -51,7 +56,8 @@ export function getMinMaxDates(array) {
 
 /**
  * gets date in yyyy-mm-dd format
- * @return {String} date
+ * @param {Date} date
+ * @return {String} 
  */
 export function getToday(date = new Date()) {
     const year = date.getFullYear();
@@ -65,6 +71,13 @@ export function getToday(date = new Date()) {
     return `${year}-${month}-${day}`;
 }
 
+/**
+ * Sorts by field or reverses array depending on the flag
+ * @param {Array} array 
+ * @param {String} field 
+ * @param {Boolean} flag 
+ * @return {Array}
+ */
 export function sortOrReverse(array, field, flag) {
     if (flag) return array.reverse();
     return array.sort((a,b) => a[field] < b[field] ? -1 : 1);

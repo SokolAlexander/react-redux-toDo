@@ -5,6 +5,12 @@ const defaultState = {
     addDateValue: getToday(),
 }
 
+/**
+ * reducer for formAdd
+ * @param {ReduxState} state 
+ * @param {Object} action 
+ * @return {ReduxState}
+ */
 export default function(state = defaultState, action) {
     switch (action.type) {
         case 'ADD_TEXT_CHANGE': return {

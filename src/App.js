@@ -19,14 +19,14 @@ class App extends React.Component {
    */
   render() {
     return (
-      <Provider store={store}>   
+      <Provider store={store}>
         <div className="App">
           <FormAdd />
           <List/>
           <FormFilter />
         </div>
       </Provider>
-      
+
     );
   }
 }
