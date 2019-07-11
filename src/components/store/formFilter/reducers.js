@@ -1,7 +1,7 @@
 import {getMinMaxDates} from '../../utils';
-import {lsGetAll} from '../../localStorage';
+import getAllDataFromLocalStorage from '../../localStorage';
 
-const lsData = lsGetAll();
+const lsData = getAllDataFromLocalStorage();
 
 const defaultState = {
     filterTextValue: '',

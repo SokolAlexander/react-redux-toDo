@@ -1,7 +1,8 @@
-import {getNewIndex, sortOrReverse} from '../../utils';
-import {lsAdd, lsCheck, lsRemove, lsGetAll} from '../../localStorage';
+import {sortOrReverse} from '../../utils';
+import getDataFromLocalStorage from '../../localStorage';
+import {getNextIndex} from '../../localStorage';
 
-const LSData = lsGetAll();
+const LSData = getDataFromLocalStorage();
 
 const defaultState = {
     dateFilterActive: false,
@@ -19,27 +20,23 @@ const defaultState = {
 export default function(state = defaultState, action) {
     switch (action.type) {
         case 'ADD_ITEM': {
-            const newItem = {
-                ...action.payload,
-                index: getNewIndex(state.data)
-            };
-            lsAdd(newItem);
             return {
                 ...state,
-                data: state.data.concat(newItem),
+                data: state.data.concat({
+                    ...action.payload,
+                    index: getNextIndex()-1
+                }),
                 sortedByDate: false,
                 sortedByText: false
             }
         }
         case 'REMOVE_ITEM': {
-            lsRemove(action.payload);
             return {
                 ...state,
                 data: state.data.filter((element) => element.index !== parseInt(action.payload))
             }
         }
         case 'CHECK_ITEM': {
-            lsCheck(action.payload);
             return {
                 ...state,
                 data: state.data.map((element) => {

@@ -1,10 +1,21 @@
+export function getNextIndex() {
+    let index = parseInt(localStorage.getItem('nextIndex'));
+    if (!index) index = 0;
+    return index
+}
 
 /**
  * Set item in localStorage
  * @param {Object} item 
  */
 export function lsAdd(item) {
+    item = {
+        ...item,
+        index: getNextIndex()
+    };
+    console.log(item.index);
     localStorage.setItem(`${item.index}-react-app`, JSON.stringify(item));
+    localStorage.setItem('nextIndex', item.index + 1);
 }
 
 /**
@@ -13,6 +24,7 @@ export function lsAdd(item) {
  */
 export function lsRemove(index) {
     localStorage.removeItem(`${index}-react-app`);
+    if (lsIsEmpty()) localStorage.removeItem('nextIndex');
 }
 
 /**
@@ -29,11 +41,20 @@ export function lsCheck(index) {
  * Get all items from localStorage
  * @return {Array}
  */
-export function lsGetAll() {
+export default function lsGetAll() {
     const data = [];
     for (const key in localStorage) {
         if (key.indexOf('-react-app') === -1) continue;
         data.push(JSON.parse(localStorage[key]));
     }
     return data
+}
+
+function lsIsEmpty() {
+    let i = 0;
+    for (const key in localStorage) {
+        if (key.indexOf('-react-app') === -1) continue;
+        i++;
+    };
+    return !i
 }

@@ -1,19 +1,4 @@
 /**
- * finds item with max index in array and returns maxIndex+1
- * @param {Array} array
- * @return {Number} 
- */
-export function getNewIndex(array) {
-    let index = 0;
-    array.forEach(element => {
-        if (element.index >= index) {
-            index = element.index + 1;
-        }
-    });
-    return index;
-}
-
-/**
  * returns true if targetDate is between dateFrom and dateTo,
  * if there's no targetDate retruns if dateFrom < dateTo
  * @param {String} dateFrom
@@ -80,6 +65,5 @@ export function getToday(date = new Date()) {
  */
 export function sortOrReverse(array, field, flag) {
     const newData = array.slice();
-    if (flag) return newData.reverse();
-    return newData.sort((a,b) => a[field] < b[field] ? -1 : 1);
+    return flag ? newData.reverse() : newData.sort((a,b) => a[field] < b[field] ? -1 : 1);
 }

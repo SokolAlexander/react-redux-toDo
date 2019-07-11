@@ -1,3 +1,5 @@
+import {lsAdd} from '../../localStorage';
+
 export const addTextChange = (newValue) => {
     return {
         type: 'ADD_TEXT_CHANGE',
@@ -13,6 +15,7 @@ export const addDateChange = (newValue) => {
 };
 
 export const addItem = (newItem) => {
+    lsAdd(newItem);
     return {
         type: 'ADD_ITEM',
         payload: newItem

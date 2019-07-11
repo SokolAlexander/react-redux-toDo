@@ -21,8 +21,7 @@ function App() {
         <FormFilter />
       </div>
     </Provider>
-
   );
-}
+};
 
 export default App;
